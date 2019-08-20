@@ -1,0 +1,129 @@
+﻿@model BusinessManagementSystem.Models.Models.Product
+
+@{
+    Layout = "~/Views/Shared/_TableLayout.cshtml";
+}
+
+@if (null != TempData["message"])
+{
+    <script type="text/javascript">
+       alert("@TempData["message"]");
+    </script>
+}
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h4 class="page-title">Product Table</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <div class="card">
+        <form class="form-horizontal" method="post">
+            <div class="card-body">
+                <h4 class="card-title">Search Product</h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Code, null, new { @for = "code", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Code, Model.Code, htmlAttributes: new { @class = "form-control", id = "code", placeholder = "Product Code Here" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Name, null, new { @for = "name", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Name, Model.Name, htmlAttributes: new { @class = "form-control", id = "name", placeholder = "Product Name Here" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.CategoryID, null, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(c => c.CategoryID, Model.CategorySelectListItems, "---Select---", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Reorder_Level, "Reorder Level", new { @for = "reorder", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Reorder_Level, null, htmlAttributes: new { @class = "form-control", id = "reorder", placeholder = "Reorder Level Here" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="border-top">
+                    <div class="card-body text-center">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">All Products</h5>
+                    <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th>SI</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Reorder Level</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @{ int si = 1;}
+                                @foreach (var product in Model.Products)
+                                {
+                                    <tr>
+                                        <td>@(si++)</td>
+                                        <td>@product.Code</td>
+                                        <td>@product.Name</td>
+                                        <td>@product.Category.Name</td>
+                                        <td>@product.Reorder_Level</td>
+                                        <td>@product.Description</td>
+                                        <td>@Html.ActionLink("Edit", "UpdateProduct", "Business", new { Id = product.ID }, null) | @Html.ActionLink("Delete", "DeleteProduct", new { Id = product.ID }, null)</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <th>SI</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Reorder Level</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

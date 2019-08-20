@@ -10,6 +10,9 @@ namespace BusinessManagementSystem.DatabaseContext.DatabaseContext
 {
     public class BusinessDbContext:DbContext
     {
-        
+        public DbSet <Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
     }
 }

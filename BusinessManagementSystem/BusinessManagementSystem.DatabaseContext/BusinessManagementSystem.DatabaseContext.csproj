@@ -49,6 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseContext\BusinessDbContext.cs" />
+    <Compile Include="Migrations\201908190054209_addValidation.cs" />
+    <Compile Include="Migrations\201908190054209_addValidation.Designer.cs">
+      <DependentUpon>201908190054209_addValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +65,11 @@
       <Project>{52751fe2-3d1b-4a7d-8ace-b4745e523248}</Project>
       <Name>BusinessManagementSystem.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201908190054209_addValidation.resx">
+      <DependentUpon>201908190054209_addValidation.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

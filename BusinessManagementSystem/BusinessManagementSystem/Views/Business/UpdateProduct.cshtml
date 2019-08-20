@@ -1,0 +1,100 @@
+﻿@model BusinessManagementSystem.Models.Models.Product
+
+@{
+    Layout = "~/Views/Shared/_UpdateLayout.cshtml";
+}
+
+@if (ViewBag.SuccessMsg != null)
+{
+    <h3 style="font-family: 'Times New Roman', Times, serif; color:green ">@ViewBag.SuccessMsg</h3>
+}
+
+@if (ViewBag.FailMsg != null)
+{
+    <h3 style="font-family: 'Times New Roman', Times, serif; color:red ">@ViewBag.FailMsg</h3>
+}
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h4 class="page-title">Products</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card">
+        <form class="form-horizontal" method="post">
+            <input type="hidden" name="Id" value="@Model.ID" />
+            <div class="card-body">
+                <h4 class="card-title">Update Product</h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Code, null, new { @for = "code", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Code, Model.Code, htmlAttributes: new { @class = "form-control", id = "code" })
+                                @Html.ValidationMessageFor(c => c.Code, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                @if (ViewBag.codeExist != null)
+                                {
+                                    <p style="font-family: 'Times New Roman', Times, serif; color:red ">@ViewBag.codeExist </p>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Name, null, new { @for = "name", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Name, Model.Name, htmlAttributes: new { @class = "form-control", id = "name" })
+                                @Html.ValidationMessageFor(c => c.Name, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                @if (ViewBag.nameExist != null)
+                                {
+                                    <p style="font-family: 'Times New Roman', Times, serif; color:red ">@ViewBag.nameExist </p>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.CategoryID, null, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(c => c.CategoryID, Model.CategorySelectListItems, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.CategoryID, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Reorder_Level, null, new { @for = "reorder", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Reorder_Level, Model.Reorder_Level.ToString(), htmlAttributes: new { @class = "form-control", id = "reorder" })
+                                @Html.ValidationMessageFor(c => c.Reorder_Level, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Description, null, new { @for = "description", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Description, Model.Description, htmlAttributes: new { @class = "form-control", id = "description" })
+                                @Html.ValidationMessageFor(c => c.Description, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="border-top">
+                    <div class="card-body text-center">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="../../Business/ShowProduct" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+}

@@ -1,0 +1,131 @@
+﻿@model BusinessManagementSystem.Models.Models.Customer
+
+@{
+    Layout = "~/Views/Shared/_UpdateLayout.cshtml";
+}
+
+@if (ViewBag.SuccessMsg != null)
+{
+    <h3 style="font-family: 'Times New Roman', Times, serif; color:green ">@ViewBag.SuccessMsg</h3>
+}
+
+@if (ViewBag.FailMsg != null)
+{
+    <h3 style="font-family: 'Times New Roman', Times, serif; color:red ">@ViewBag.FailMsg</h3>
+}
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h4 class="page-title">Customers</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card">
+        <form class="form-horizontal" method="post">
+            <input type="hidden" name="Id" value="@Model.ID" />
+            <div class="card-body">
+                <h4 class="card-title">Update Customer</h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Code, null, new { @for = "code", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Code, Model.Code, htmlAttributes: new { @class = "form-control", id = "code" })
+                                @Html.ValidationMessageFor(c => c.Code, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                @if (ViewBag.codeExist != null)
+                                {
+                                    <p style="font-family: 'Times New Roman', Times, serif; color:red ">@ViewBag.codeExist </p>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Name, null, new { @for = "name", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Name, Model.Name, htmlAttributes: new { @class = "form-control", id = "name" })
+                                @Html.ValidationMessageFor(c => c.Name, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                @if (ViewBag.nameExist != null)
+                                {
+                                    <p style="font-family: 'Times New Roman', Times, serif; color:red ">@ViewBag.nameExist </p>
+                                }
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Address, null, new { @for = "address", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Address, Model.Address, htmlAttributes: new { @class = "form-control", id = "address" })
+                                @Html.ValidationMessageFor(c => c.Address, null, new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Email, null, new { @for = "email", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Email, Model.Email, htmlAttributes: new { @class = "form-control", id = "email" })
+                                @Html.ValidationMessageFor(c => c.Email, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                @if (ViewBag.emailExist != null)
+                                {
+                                    <p style="font-family: 'Times New Roman', Times, serif; color:red ">@ViewBag.emailExist </p>
+                                }
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Contact, null, new { @for = "contact", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Contact, Model.Contact, htmlAttributes: new { @class = "form-control", id = "contact" })
+                                @Html.ValidationMessageFor(c => c.Contact, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                @if (ViewBag.contactExist != null)
+                                {
+                                    <p style="font-family: 'Times New Roman', Times, serif; color:red ">@ViewBag.contactExist </p>
+                                }
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Loyalty_Point, null, new { @for = "loyaltyPoint", @class = "col-sm-3 text-right control-label col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(c => c.Loyalty_Point, Model.Loyalty_Point.ToString(), htmlAttributes: new { @class = "form-control", id = "loyaltyPoint" })
+                                @Html.ValidationMessageFor(c => c.Loyalty_Point, null, new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="border-top">
+                    <div class="card-body text-center">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="../../Business/ShowCustomer" class="btn btn-danger">Cancel</a>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+}
